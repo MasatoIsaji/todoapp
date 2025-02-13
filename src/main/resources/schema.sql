@@ -7,6 +7,8 @@ CREATE TABLE todos
 (
    -- id（することID）：主キー
    id serial PRIMARY KEY,
+   -- todoの持ち主
+   username varchar (50),
    -- todo（すること）：NULL不許可
    todo varchar (255) NOT NULL,
    -- detail（説明）
@@ -16,7 +18,6 @@ CREATE TABLE todos
    -- updated_at（更新日）
    updated_at timestamp without time zone
 );
--- ▽▽▽▽▽ リストA.31 ▽▽▽▽▽
 -- 認証情報を格納するテーブル
 CREATE TABLE authentications
 (
@@ -25,8 +26,6 @@ CREATE TABLE authentications
    -- パスワード
    password VARCHAR (255) NOT NULL,
    -- 権限
-   authority varchar (10) NOT NULL,
-   -- 表示名
-   displayname VARCHAR (50) NOT NULL
+   authority varchar (10) NOT NULL
 );
 -- △△△△△ リストA.31 △△△△△

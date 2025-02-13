@@ -14,6 +14,4 @@ public class Authentication {
 	private String password;
 	/** 権限 */
 	private String authority;
-	/** 表示名 */
-	private String displayname;
 }

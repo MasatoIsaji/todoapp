@@ -19,31 +19,31 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ToDoServiceImpl implements ToDoService {
 
-    /** DI */
-    private final ToDoMapper toDoMapper;
-    
-    @Override
-    public List<ToDo> findAllToDo() {
-        return toDoMapper.selectAll();
-    }
+	/** DI */
+	private final ToDoMapper toDoMapper;
 
-    @Override
-    public ToDo findByIdToDo(Integer id) {
-        return toDoMapper.selectById(id);
-    }
+	@Override
+	public List<ToDo> findAllToDo(String username) {
+		return toDoMapper.selectAll(username);
+	}
 
-    @Override
-    public void insertToDo(ToDo toDo) {
-        toDoMapper.insert(toDo);
-    }
+	@Override
+	public ToDo findByIdToDo(Integer id) {
+		return toDoMapper.selectById(id);
+	}
 
-    @Override
-    public void updateToDo(ToDo toDo) {
-        toDoMapper.update(toDo);
-    }
+	@Override
+	public void insertToDo(ToDo toDo) {
+		toDoMapper.insert(toDo);
+	}
 
-    @Override
-    public void deleteToDo(Integer id) {
-        toDoMapper.delete(id);
-    }
+	@Override
+	public void updateToDo(ToDo toDo) {
+		toDoMapper.update(toDo);
+	}
+
+	@Override
+	public void deleteToDo(Integer id) {
+		toDoMapper.delete(id);
+	}
 }

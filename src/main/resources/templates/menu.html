@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
+    <meta charset="UTF-8">
     <title>メニュー</title>
+    <link rel="stylesheet" th:href="@{/css/fragments/header-css.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/header-title-css.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
 </head>
+
 <body>
-    <h2>メニュー画面</h2>
-    <hr>
-    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/todos}">
-		ToDo一覧へ
-	</a>
-	<br>
-	<div sec:authorize="hasAuthority('USER')">
-		【一般権限で表示される部分】
-	</div>
-    <div sec:authentication="name">
-        ログイン情報のname値に書き換わる
+    <header th:insert="~{fragments/header :: header}"></header>
+    <div class="header-title-area" th:insert="~{fragments/header-title(title='メニュー画面')}"></div>
+
+    <!-- メニューカード -->
+    <div id="card-wrap">
+        <ul>
+            <!-- 管理者メニュー -->
+            <li sec:authorize="hasAuthority('ADMIN')">
+                <a class="card-title" th:href="@{/todos}">ユーザー管理</a>
+                <p>ユーザーの追加/削除を行います。
+                </p>
+            </li>
+            <!-- 一般メニュー -->
+            <li sec:authorize="hasAuthority('USER')">
+                <a class="card-title" th:href="@{/todos}">ToDo一覧</a>
+                <p>ToDoを一覧で表示します。
+                </p>
+            </li>
+        </ul>
     </div>
-	<div th:text="${#authentication.principal.displayname}">
-		新たに追加したdisplayname値に書き換わる
-	</div>
-    <div sec:authorize="isAuthenticated()">
-        認証されたユーザーにのみ表示
-    </div>
-    <br>
-    <!-- ログアウト -->
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="ログアウト">
-    </form>
 </body>
+
 </html>

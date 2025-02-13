@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+body {
+    max-width: 1280px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+/* ヘッダー要素をflex化 */
+.header-wrap {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    max-width: 1280px;
+    height: 50px;
+    margin: 0 auto 32px;
+    background: linear-gradient(90deg, #00d4ff4d 1%, #00d4ff 20%, #090979 70%, #020024);
+    box-shadow: 10px 10px 10px -10px #00000080;
+}
+
+/* ユーザー名の位置 */
+.header-wrap-right {
+    margin-right: 20px;
+    color: white;
+    border-bottom: 1px solid #ffffff;
+}
+
+/* ドロップダウンメニュー */
+ul.drop-menu ul {
+    display: none;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+}
+
+ul.drop-menu li {
+    width: 125px;
+    display: inline-block;
+    list-style-type: none;
+    position: relative;
+}
+
+ul.drop-menu li:hover ul {
+    display: block;
+}
+
+.logout-button {
+    display: inline-block;
+    border-radius: 5%;
+    cursor: pointer;
+    padding: 8px 8px;
+    background: #000066;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    box-shadow: 1px 1px 3px #666666;
+    border: 2px solid #000066;
+}
+
+.logout-button:hover {
+    box-shadow: none;
+    color: #000066;
+    background: #ffffff;
+}

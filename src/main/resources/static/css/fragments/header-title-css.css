@@ -1,0 +1,10 @@
+.header-title-name {
+    font-size: 20px;
+    width: 8em;
+    margin: auto;
+}
+
+.header-title-name {
+    background: linear-gradient(transparent 60%, #279ff0);
+    text-align: center;
+}

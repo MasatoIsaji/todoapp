@@ -8,29 +8,29 @@ import com.example.webapp.entity.ToDo;
  * ToDo：サービス
  */
 public interface ToDoService {
-	
-    /**
-     * 全「すること」を検索します。
-     */
-    List<ToDo> findAllToDo();
 
-    /**
-     * 指定されたIDの「すること」を検索します。
-     */
-    ToDo findByIdToDo(Integer id);
+	/**
+	 * 全「すること」を検索します。
+	 */
+	List<ToDo> findAllToDo(String username);
 
-    /**
-     * 「すること」を新規登録します。
-     */
-    void insertToDo(ToDo toDo);
+	/**
+	 * 指定されたIDの「すること」を検索します。
+	 */
+	ToDo findByIdToDo(Integer id);
 
-    /**
-     * 「すること」を更新します。
-     */
-    void updateToDo(ToDo toDo);
+	/**
+	 * 「すること」を新規登録します。
+	 */
+	void insertToDo(ToDo toDo);
 
-    /**
-     * 指定されたIDの「すること」を削除します。
-     */
-    void deleteToDo(Integer id);
+	/**
+	 * 「すること」を更新します。
+	 */
+	void updateToDo(ToDo toDo);
+
+	/**
+	 * 指定されたIDの「すること」を削除します。
+	 */
+	void deleteToDo(Integer id);
 }

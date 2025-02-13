@@ -30,7 +30,7 @@ public class SecurityConfig {
 						.requestMatchers("/css/**").permitAll()
 						// ▽▽▽▽▽ リストA.29 ▽▽▽▽▽
 						// 【管理者権限設定】url:/todos/**は管理者しかアクセスできない
-						.requestMatchers("/todos/**").hasAuthority("ADMIN")
+						//						.requestMatchers("/todos/**").hasAuthority("ADMIN")
 						// △△△△△ リストA.29 △△△△△
 						// その他のリクエストは認証が必要
 						.anyRequest().authenticated())

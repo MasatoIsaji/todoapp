@@ -1,0 +1,19 @@
+<div th:fragment="header">
+    <div class="header-wrap">
+        <div class="header-wrap-right">
+
+            <ul class="drop-menu">
+                <li>
+                    <div class="header-wrap-username" sec:authentication="name">ユーザー名</div>
+                    <ul>
+                        <li>
+                            <form th:action="@{/logout}" method="post">
+                                <input class="logout-button" type="submit" value="ログアウト">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

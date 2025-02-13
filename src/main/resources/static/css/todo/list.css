@@ -1,0 +1,119 @@
+/* 画面ナビゲーター */
+.screen-navigator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* -----
+    新規登録ボタン
+   -----*/
+.insert-button {
+    font-size: 17px;
+    display: inline-block;
+    padding: 5px 30px;
+    background-color: #2a8aca;
+    /* 緑色の背景色 */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    /* ボーダーを消す */
+    border-radius: 4px;
+    cursor: pointer;
+    /* カーソルを指の形にする */
+    transition: background-color 0.3s ease;
+}
+
+.insert-button:hover {
+    background-color: #2a6aca;
+}
+
+/* -----
+    メニュー画面ボタン
+   -----*/
+.return-button {
+    margin-left: 20px;
+
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #646464;
+    /* 緑色の背景色 */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    /* ボーダーを消す */
+    border-radius: 4px;
+    cursor: pointer;
+    /* カーソルを指の形にする */
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #353434;
+}
+
+
+/* -----
+   メッセージ表示エリア
+   -----*/
+.message-area {
+    height: 30px;
+}
+
+.message-area p {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.complate-message {
+    color: blue;
+}
+
+.error-message {
+    color: red;
+}
+
+/* -----
+    ToDoカード表示デザイン
+    -----*/
+.todo-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+}
+
+
+.todo-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.todo-card:hover {
+    transform: translateY(-5px);
+}
+
+.todo-content {
+    margin-bottom: 10px;
+}
+
+.todo-actions {
+    text-align: right;
+}
+
+.todo-actions a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.todo-actions a:hover {
+    background-color: #0056b3;
+}

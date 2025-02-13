@@ -13,14 +13,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ToDo {
-    /** することID */
-    private Integer id;
-    /** すること */
-    private String todo;
-    /** すること詳細 */
-    private String detail;
-    /** 作成日時 */
-    private LocalDateTime createdAt;
-    /** 更新日時 */
-    private LocalDateTime updatedAt;
+	/** することID */
+	private Integer id;
+	/** することの持ち主 */
+	private String username;
+	/** すること */
+	private String todo;
+	/** すること詳細 */
+	private String detail;
+	/** 作成日時 */
+	private LocalDateTime createdAt;
+	/** 更新日時 */
+	private LocalDateTime updatedAt;
 }
