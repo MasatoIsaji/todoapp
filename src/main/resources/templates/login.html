@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>ログイン</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
+
 <body>
-	<h2>ログイン画面</h2>
-	<!-- エラー表示 -->
-	<div th:if="${param.error}">
-		<p style="color: red;">usernameまたはpasswordが違います</p>
+	<!-- ページタイトル -->
+	<div class="page-title">
+		<p class="page-title-text">ToDo管理システム</p>
 	</div>
-	<!--ログアウト表示 -->
-	<div th:if="${param.logout}">
-		<p style="color: blue">ログアウトしました</p>
+
+	<!-- フォームタイトル -->
+	<div class="form-input-area-base">
+		<div class="form-area">
+			<div class="form-title">
+				<p>ログイン画面</p>
+			</div>
+
+			<!-- エラー表示 -->
+			<div class="message-area">
+				<div th:if="${param.error}">
+					<p class="error-message">usernameまたはpasswordが違います</p>
+				</div>
+				<!--ログアウト表示 -->
+				<div th:if="${param.logout}">
+					<p class="logout-message">ログアウトしました</p>
+				</div>
+			</div>
+
+
+
+			<form class="form-input-area" th:action="@{/authentication}" method="post" th:object="${loginForm}">
+				<div><!-- ユーザー名 -->
+					<!-- <label for="usernameInput">username</label> -->
+					<input class="input-area" type="text" th:field="*{usernameInput}" placeholder="ユーザー名">
+				</div>
+				<div><!-- パスワード -->
+					<!-- <label for="passwordInput">password</label> -->
+					<input class="input-area" type="password" th:field="*{passwordInput}" placeholder="パスワード">
+				</div>
+				<div class="loginbtn-area">
+					<input class="loginbtn-icon" type="submit" value="ログイン">
+				</div>
+			</form>
+		</div>
 	</div>
-	<form th:action="@{/authentication}" method="post" th:object="${loginForm}">
-		<div><!-- ユーザー名 -->
-			<label for="usernameInput">username</label>
-			<input type="text" th:field="*{usernameInput}">
-		</div>
-		<div><!-- パスワード -->
-			<label for="passwordInput">password</label>
-			<input type="password" th:field="*{passwordInput}">
-		</div>
-		<div>
-			<input type="submit" value="login">
-		</div>
-	</form>
 </body>
+
 </html>
