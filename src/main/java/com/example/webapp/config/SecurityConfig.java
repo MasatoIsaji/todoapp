@@ -15,11 +15,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-	/** DI対象が存在すれば、DIして使用する */
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
 
-	// SecurityFilterChainのBean定義
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
@@ -28,10 +26,8 @@ public class SecurityConfig {
 						// 「/login」「/css」へのアクセスは認証を必要としない
 						.requestMatchers("/login").permitAll()
 						.requestMatchers("/css/**").permitAll()
-						// ▽▽▽▽▽ リストA.29 ▽▽▽▽▽
 						// 【管理者権限設定】url:/todos/**は管理者しかアクセスできない
-						//						.requestMatchers("/todos/**").hasAuthority("ADMIN")
-						// △△△△△ リストA.29 △△△△△
+						.requestMatchers("/admin/**").hasAuthority("ADMIN")
 						// その他のリクエストは認証が必要
 						.anyRequest().authenticated())
 				// ★フォームベースのログイン設定

@@ -18,7 +18,7 @@
         <ul>
             <!-- 管理者メニュー -->
             <li sec:authorize="hasAuthority('ADMIN')">
-                <a class="card-title" th:href="@{/todos}">ユーザー管理</a>
+                <a class="card-title" th:href="@{/admin/userlist}">ユーザー管理</a>
                 <p>ユーザーの追加/削除を行います。
                 </p>
             </li>

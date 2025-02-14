@@ -9,4 +9,25 @@
 		authentications
 		WHERE username = #{username}
 	</select>
+
+	<!-- ユーザー一覧取得 -->
+	<select id="selectUserList"
+		resultType="com.example.webapp.entity.Authentication">
+		SELECT username,password,authority
+		FROM authentications
+	</select>
+
+	<!-- ユーザー登録 -->
+	<insert id="insertUser">
+		INSERT INTO authentications(username, password, authority)
+		VALUES (#{username}, #{password},#{authority})
+	</insert>
+
+	<!-- ユーザー削除 -->
+	<delete id="deleteUser">
+		DELETE FROM authentications
+		WHERE username =
+		#{username}
+	</delete>
+
 </mapper>

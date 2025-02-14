@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー</title>
+    <link rel="stylesheet" th:href="@{/css/fragments/header-css.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/header-title-css.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/userlist.css}">
+</head>
+
+<body>
+    <!-- ヘッダーのインポート -->
+    <header th:insert="~{fragments/header :: header}"></header>
+    <div class="header-title-area" th:insert="~{fragments/header-title(title='メニュー画面')}"></div>
+
+    <!-- 画面遷移メニュー -->
+    <div class="screen-navigator">
+        <a class="insert-button" th:href="@{/admin/userRegistForm}">ユーザー追加</a>
+        <a class="return-button" th:href="@{/}">メニュー画面へ</a>
+    </div>
+
+    <!-- Flashメッセージの表示 -->
+    <div class="message-area">
+        <p class="complate-message" th:if="${message}" th:text="${message}"></p>
+        <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    </div>
+
+    <div class="user-list">
+        <table class="user-list-table">
+            <thead>
+                <th>ユーザー名</th>
+                <th>権限</th>
+                <th></th>
+            </thead>
+            <tbody th:each="user : ${userlist}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.authority}"></td>
+                <form th:action="@{/admin/delete/{username}(username=${user.username})}" method="get">
+                    <td><input class="delete-submit-button" type="submit" value="削除"></td>
+                </form>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</body>
+
+</html>

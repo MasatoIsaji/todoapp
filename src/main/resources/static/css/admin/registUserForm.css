@@ -1,0 +1,112 @@
+/* 画面ナビゲーター */
+.screen-navigator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* -----
+    登録ボタン
+   -----*/
+.regist-button {
+    font-size: 17px;
+    display: inline-block;
+    padding: 5px 30px;
+    background-color: #2a8aca;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.regist-button:hover {
+    background-color: #2a6aca;
+}
+
+/* -----
+    メニュー画面ボタン
+   -----*/
+.return-button {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #646464;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #353434;
+}
+
+
+/* -----
+   メッセージ表示エリア
+   -----*/
+.message-area {
+    height: 30px;
+}
+
+.message-area p {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.complate-message {
+    color: blue;
+}
+
+.error-message {
+    color: red;
+}
+
+.message-area .complate-message,
+.message-area .error-message {
+    visibility: visible;
+    /* 初期状態は表示 */
+    animation: fadeOut 3s linear forwards;
+    /* 3秒後に非表示にするアニメーション */
+}
+
+@keyframes fadeOut {
+    to {
+        visibility: hidden;
+        /* 最終的に非表示にする */
+    }
+}
+
+/* -----
+    入力フォーム
+    ----- */
+.user-regist-wrap {
+    text-align: center;
+}
+
+.user-regist-form {
+    /* margin: auto; */
+    width: 500px;
+    display: inline-grid;
+}
+
+.user-regist-form td {
+    padding: 5px;
+}
+
+.input-area {
+    height: 30px;
+    width: 200px;
+}
+
+/* -----
+    バリデーションメッセージ
+    -----*/
+.validation-message {
+    text-align: center;
+    color: red;
+}

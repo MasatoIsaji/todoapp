@@ -10,6 +10,6 @@ public class PasswordConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		// エンコンコードの設定
-		return new BCryptPasswordEncoder();		// リストA.17
+		return new BCryptPasswordEncoder();
 	}
 }

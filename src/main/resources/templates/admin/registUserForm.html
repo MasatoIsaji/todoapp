@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー</title>
+    <link rel="stylesheet" th:href="@{/css/fragments/header-css.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/header-title-css.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/registUserForm.css}">
+</head>
+
+<body>
+    <!-- ヘッダーのインポート -->
+    <header th:insert="~{fragments/header :: header}"></header>
+    <div class="header-title-area" th:insert="~{fragments/header-title(title='ユーザー登録')}"></div>
+
+    <!-- 画面遷移メニュー -->
+    <div class="screen-navigator">
+        <!-- <a class="insert-button" th:href="@{/admin/registUser}">ユーザー登録</a> -->
+        <a class="return-button" th:href="@{/}">一覧へ戻る</a>
+    </div>
+
+    <!-- Flashメッセージの表示 -->
+    <div class="message-area">
+        <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    </div>
+
+    <div class="user-regist-wrap">
+        <form class="user-regist-form" th:action="@{/admin/registUser}" th:object="${authentication}" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <input class="input-area" type="text" th:field="*{username}" placeholder="ユーザー名">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="input-area" type="password" th:field="*{password}" placeholder="パスワード">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" th:field="*{authority}" value="ADMIN">管理者
+                        <input type="radio" th:field="*{authority}" value="USER">一般
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="regist-button" type="submit" value="登録">
+                    </td>
+                </tr>
+            </table>
+            <div class="validation-message">
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></div>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+                <div th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}" class="text-danger"></div>
+            </div>
+        </form>
+
+
+
+
+
+        <!-- <form class="user-regist-form" th:action="@{/admin/registUser}" th:object="${user}" method="post">
+            <table>
+                <tr>
+                    <td><input class="input-area" type="text" th:field="*{username}" placeholder="ユーザー名">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><input class="input-area" type="password" th:field="*{password}" placeholder="パスワード">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" th:field="*{authority}" value="ADMIN">管理者
+                        <input type="radio" th:field="*{authority}" value="USER">一般
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="regist-button" type="submit" value="登録">
+                    </td>
+                </tr>
+            </table>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">エラーがあれば表示</div> -->
+        <!-- <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">エラーがあれば表示</div>
+            <div th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}">エラーがあれば表示</div> -->
+        <!-- </form> -->
+
+    </div>
+
+
+
+
+</body>
+
+</html>
