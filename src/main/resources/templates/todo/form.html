@@ -50,7 +50,7 @@
 		</table>
 
 		<!-- エラーメッセージエリア -->
-		<p class="notice-message">完了ToDoを編集すると未完になります</p>
+		<p class="notice-message" th:unless="${toDoForm.isNew}">完了ToDoを編集すると未完になります</p>
 		<div class="error-message-area">
 			<!-- todo用：バリデーションエラー表示 -->
 			<div class="todo-error-message" th:if="${#fields.hasErrors('todo')}">

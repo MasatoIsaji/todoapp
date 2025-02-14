@@ -24,7 +24,7 @@ public class SecurityConfig {
 				// ★HTTPリクエストに対するセキュリティ設定
 				.authorizeHttpRequests(authz -> authz
 						// 「/login」「/css」へのアクセスは認証を必要としない
-						.requestMatchers("/login").permitAll()
+						.requestMatchers("/login/**").permitAll()
 						.requestMatchers("/css/**").permitAll()
 						// 【管理者権限設定】url:/todos/**は管理者しかアクセスできない
 						.requestMatchers("/admin/**").hasAuthority("ADMIN")

@@ -30,8 +30,6 @@
 				</div>
 			</div>
 
-
-
 			<form class="form-input-area" th:action="@{/authentication}" method="post" th:object="${loginForm}">
 				<div><!-- ユーザー名 -->
 					<!-- <label for="usernameInput">username</label> -->
@@ -45,6 +43,9 @@
 					<input class="loginbtn-icon" type="submit" value="ログイン">
 				</div>
 			</form>
+			<!-- <div class="create-user-button">
+				<a th:href="@{/login/createUser}">新規登録</a>
+			</div> -->
 		</div>
 	</div>
 </body>
