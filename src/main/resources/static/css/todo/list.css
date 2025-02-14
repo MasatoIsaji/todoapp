@@ -13,14 +13,11 @@
     display: inline-block;
     padding: 5px 30px;
     background-color: #2a8aca;
-    /* 緑色の背景色 */
     color: #fff;
     text-decoration: none;
     border: none;
-    /* ボーダーを消す */
     border-radius: 4px;
     cursor: pointer;
-    /* カーソルを指の形にする */
     transition: background-color 0.3s ease;
 }
 
@@ -37,14 +34,11 @@
     display: inline-block;
     padding: 4px 10px;
     background-color: #646464;
-    /* 緑色の背景色 */
     color: #fff;
     text-decoration: none;
     border: none;
-    /* ボーダーを消す */
     border-radius: 4px;
     cursor: pointer;
-    /* カーソルを指の形にする */
     transition: background-color 0.3s ease;
 }
 
@@ -74,8 +68,23 @@
     color: red;
 }
 
+.message-area .complate-message,
+.message-area .error-message {
+    visibility: visible;
+    /* 初期状態は表示 */
+    animation: fadeOut 1s linear forwards;
+    /* 3秒後に非表示にするアニメーション */
+}
+
+@keyframes fadeOut {
+    to {
+        visibility: hidden;
+        /* 最終的に非表示にする */
+    }
+}
+
 /* -----
-    ToDoカード表示デザイン
+    ToDoカード表示デザイン(未完)
     -----*/
 .todo-list {
     display: grid;
@@ -102,9 +111,15 @@
 
 .todo-actions {
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.todo-actions a {
+.todo-actions a,
+.todo-actions input[type="submit"] {
+    font-size: 15px;
+    margin: 5px;
+
     display: inline-block;
     padding: 8px 16px;
     background-color: #007bff;
@@ -112,8 +127,66 @@
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
-.todo-actions a:hover {
+.todo-actions a:hover,
+.todo-actions input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* -----
+    ToDoカード表示デザイン(完了)
+    -----*/
+.todo-list-finished {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+}
+
+
+.todo-card-finished {
+    background-color: rgb(179, 177, 177);
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.todo-card-finished:hover {
+    transform: translateY(-5px);
+}
+
+.todo-content-finished {
+    margin-bottom: 10px;
+}
+
+.todo-actions-finished {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.todo-actions-finished a,
+.todo-actions-finished input[type="submit"] {
+    font-size: 15px;
+    margin: 5px;
+    opacity: 0.6;
+
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.todo-actions-finished a:hover,
+.todo-actions-finished input[type="submit"]:hover {
     background-color: #0056b3;
 }

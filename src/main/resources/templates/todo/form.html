@@ -1,48 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>ToDoフォーム</title>
+	<meta charset="UTF-8">
+	<title>ToDoフォーム</title>
+	<link rel="stylesheet" th:href="@{/css/fragments/header-css.css}">
+	<link rel="stylesheet" th:href="@{/css/fragments/header-title-css.css}">
+	<link rel="stylesheet" th:href="@{/css/todo/form.css}">
 </head>
+
 <body>
-    <!-- タイトル：登録 or 編集 -->
-    <h2 th:if="${toDoForm.isNew}">新規ToDo登録</h2>
-    <h2 th:unless="${toDoForm.isNew}">ToDo編集</h2>
-    <!-- アクション：登録 or 編集 -->
-    <form th:action="${toDoForm.isNew} ? @{/todos/save} : @{/todos/update}"
-        th:object="${toDoForm}" method="post">
-        <!-- idは更新時に必要のため、hiddenで持つ -->
-        <input type="hidden" th:field="*{id}">
-        <!-- ▽▽▽▽▽ 14.4 ▽▽▽▽▽ -->
-	    <table>
-	        <tr>
-	            <th>ToDo</th>
-	            <td>
-	                <input type="text" th:field="*{todo}">
-	                <!-- todo用：バリデーションエラー表示 -->
-	                <span th:if="${#fields.hasErrors('todo')}" 
-	                    th:errors="*{todo}" style="color: red;">
-	                    エラーがあれば表示
-	                </span>
-	            </td>
-	        </tr>
-	        <tr>
-	            <th>詳細</th>
-	            <td>
-	                <textarea rows="5" cols="30" th:field="*{detail}">
+	<!-- ヘッダーのインポート -->
+	<header th:insert="~{fragments/header :: header}"></header>
+	<div th:if="${toDoForm.isNew}" class="header-title-area" th:insert="~{fragments/header-title(title='新規ToDo登録')}">
+	</div>
+	<div th:unless="${toDoForm.isNew}" class="header-title-area" th:insert="~{fragments/header-title(title='ToDo編集')}">
+	</div>
+
+	<!-- 入力エリア -->
+	<form class="todoform-area" th:action="${toDoForm.isNew} ? @{/todos/save} : @{/todos/update}"
+		th:object="${toDoForm}" method="post">
+
+		<!-- ボタン：登録/編集・戻る -->
+		<div class="screen-navigator">
+			<input class="submit-button" th:if="${toDoForm.isNew}" type="submit" value="登録">
+			<input class="submit-button" th:unless="${toDoForm.isNew}" type="submit" value="更新">
+			<a class="return-button" th:href="@{/todos}">戻る</a>
+		</div>
+
+		<!-- idは更新時に必要のため、hiddenで持つ -->
+		<input type="hidden" th:field="*{id}">
+		<input type="hidden" th:field="*{status}">
+		<table class="input-form-area">
+			<tr>
+				<th>ToDo</th>
+				<td>
+					<input type="text" th:field="*{todo}">
+
+				</td>
+			</tr>
+			<tr>
+				<th>詳細</th>
+				<td>
+					<textarea th:field="*{detail}">
 	                </textarea>
-	                <!-- 詳細用：バリデーションエラー表示 -->
-	                <span th:if="${#fields.hasErrors('detail')}" 
-	                    th:errors="*{detail}" style="color: red;">
-	                    エラーがあれば表示
-	                </span>
-	            </td>
-	        </tr>
-	    </table>
-        <!-- △△△△△ 14.4 △△△△△ -->
-        <!-- ボタン：登録 or 編集 -->
-        <input th:if="${toDoForm.isNew}" type="submit" value="登録">
-        <input th:unless="${toDoForm.isNew}" type="submit" value="更新">
-    </form>
-    <a th:href="@{/todos}">戻る</a>
+
+				</td>
+			</tr>
+		</table>
+
+		<!-- エラーメッセージエリア -->
+		<p class="notice-message">完了ToDoを編集すると未完になります</p>
+		<div class="error-message-area">
+			<!-- todo用：バリデーションエラー表示 -->
+			<div class="todo-error-message" th:if="${#fields.hasErrors('todo')}">
+				<span th:errors="*{todo}">エラーがあれば表示</span>
+			</div>
+
+			<div class="detail-error-message" th:if="${#fields.hasErrors('detail')}">
+				<!-- 詳細用：バリデーションエラー表示 -->
+				<span th:errors="*{detail}">エラーがあれば表示</span>
+			</div>
+		</div>
+	</form>
+
 </body>
+
 </html>

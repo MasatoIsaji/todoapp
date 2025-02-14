@@ -3,6 +3,7 @@ INSERT INTO todos
 (
    todo,
    username,
+   status,
    detail,
    created_at,
    updated_at
@@ -11,6 +12,7 @@ VALUES
 (
    '買い物',
    'admin',
+   false,
    'スーパーで食材を購入する',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -19,6 +21,7 @@ VALUES
 (
    '図書館に行く',
    'admin',
+   false,
    '本を借りる',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -27,6 +30,7 @@ VALUES
 (
    '皇居ラン',
    'admin',
+   false,
    '皇居の周りを1周30分目安で走る！',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -35,6 +39,7 @@ VALUES
 (
    'コンビニに行く',
    'admin',
+   false,
    'ブラックサンダーを買う',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -43,6 +48,7 @@ VALUES
 (
    'カレーを作る',
    'admin',
+   false,
    '食材を買うのを忘れずに・・・',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -51,7 +57,17 @@ VALUES
 (
    'パソコンを買う',
    'admin',
+   false,
    'メモリ32GBは欲しい',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   '終わったやつ',
+   'admin',
+   true,
+   '本当に終わった・・・？',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 ),
@@ -59,7 +75,17 @@ VALUES
 (
    'ジムに行く',
    'user',
+   false,
    '運動する',
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   '空を飛ぶ',
+   'user',
+   true,
+   '飛べたらいいなぁ',
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 );

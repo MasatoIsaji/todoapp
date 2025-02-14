@@ -23,8 +23,8 @@ public class ToDoServiceImpl implements ToDoService {
 	private final ToDoMapper toDoMapper;
 
 	@Override
-	public List<ToDo> findAllToDo(String username) {
-		return toDoMapper.selectAll(username);
+	public List<ToDo> findAllToDo(String username, boolean status) {
+		return toDoMapper.selectAll(username, status);
 	}
 
 	@Override
@@ -43,7 +43,15 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
+	public void updateStatus(ToDo toDo) {
+		// statusを反転させる
+		toDo.setStatus(!toDo.isStatus());
+		toDoMapper.update(toDo);
+	}
+
+	@Override
 	public void deleteToDo(Integer id) {
 		toDoMapper.delete(id);
 	}
+
 }

@@ -38,7 +38,8 @@ public class ToDoController {
 	public String list(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		model.addAttribute("todos", toDoService.findAllToDo(username));
+		model.addAttribute("todosUnfinished", toDoService.findAllToDo(username, false));
+		model.addAttribute("todosFinished", toDoService.findAllToDo(username, true));
 		return "todo/list";
 	}
 
@@ -123,14 +124,11 @@ public class ToDoController {
 		}
 	}
 
-	// ▽▽▽▽▽ 14.3追加 ▽▽▽▽▽
 	/**
 	 * 「すること」を更新します。
 	 */
 	@PostMapping("/update")
-	public String update(@Validated ToDoForm form,
-			BindingResult bindingResult,
-			RedirectAttributes attributes) {
+	public String update(@Validated ToDoForm form, BindingResult bindingResult, RedirectAttributes attributes) {
 		// === バリデーションチェック ===
 		// 入力チェックNG：入力画面を表示する
 		if (bindingResult.hasErrors()) {
@@ -138,6 +136,7 @@ public class ToDoController {
 			form.setIsNew(false);
 			return "todo/form";
 		}
+
 		// エンティティへの変換
 		ToDo ToDo = ToDoHelper.convertToDo(form);
 		// 更新処理
@@ -147,7 +146,30 @@ public class ToDoController {
 		// PRGパターン
 		return "redirect:/todos";
 	}
-	// △△△△△ 14.3追加 △△△△△
+
+	/**
+	 * 「すること」の処理ステータスを更新します。
+	 */
+	@PostMapping("/update/status")
+	public String updateStatus(@Validated ToDo todo, BindingResult bindingResult, RedirectAttributes attributes) {
+		// === バリデーションチェック ===
+		// 入力チェックNG：入力画面を表示する
+		if (bindingResult.hasErrors()) {
+			// 一覧に戻す
+			return "redirect:/todos";
+		}
+
+		// 更新処理
+		toDoService.updateStatus(todo);
+		// フラッシュメッセージ
+		if (todo.isStatus()) {
+			attributes.addFlashAttribute("message", "ToDoを完了に移動しました");
+		} else {
+			attributes.addFlashAttribute("message", "ToDoを未完に移動しました");
+		}
+		// PRGパターン
+		return "redirect:/todos";
+	}
 
 	/**
 	 * 指定されたIDの「すること」を削除します。

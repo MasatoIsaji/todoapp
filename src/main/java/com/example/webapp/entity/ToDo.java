@@ -17,6 +17,8 @@ public class ToDo {
 	private Integer id;
 	/** することの持ち主 */
 	private String username;
+	/** 処理ステータス */
+	private boolean status;
 	/** すること */
 	private String todo;
 	/** すること詳細 */

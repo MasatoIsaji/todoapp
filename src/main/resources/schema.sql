@@ -9,6 +9,8 @@ CREATE TABLE todos
    id serial PRIMARY KEY,
    -- todoの持ち主
    username varchar (50),
+   -- 処理ステータス
+   status boolean NOT NULL,
    -- todo（すること）：NULL不許可
    todo varchar (255) NOT NULL,
    -- detail（説明）

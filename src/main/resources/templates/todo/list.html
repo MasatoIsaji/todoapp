@@ -26,18 +26,46 @@
         <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
     </div>
 
-    <!-- ToDo一覧の表示 -->
+    <!-- ToDo：未完の一覧表示 -->
     <div class="todo-list">
-        <div class="todo-card" th:each="todo : ${todos}">
+        <div class="todo-card" th:each="todo : ${todosUnfinished}">
             <div class="todo-content" th:text="${todo.todo}"></div>
             <div class="todo-actions">
-                <a th:href="@{/todos/{id}(id=${todo.id})}">詳細</a>
+                <form th:action="@{/todos/update/status}" method="post" th:object="${todo}">
+                    <input type="hidden" th:value="*{id}" name="id" />
+                    <input type="hidden" th:value="*{username}" name="username" />
+                    <input type="hidden" th:value="*{status}" name="status" />
+                    <input type="hidden" th:value="*{todo}" name="todo" />
+                    <input type="hidden" th:value="*{detail}" name="detail" />
+                    <input type="hidden" th:value="*{createdAt}" name="createdAt" />
+                    <input class="status-true-button" type="submit" value="完了へ">
+                </form>
+                <a class="status-true-button" th:href="@{/todos/{id}(id=${todo.id})}">詳細</a>
             </div>
         </div>
     </div>
 
-    <br><br>
-
+    <br>
+    <hr>
+    <br>
+    <!-- ToDo：未完の一覧表示 -->
+    <div class="todo-list-finished">
+        <div class="todo-card-finished" th:each="todo : ${todosFinished}">
+            <div class="todo-content-finished" th:text="${todo.todo}"></div>
+            <div class="todo-actions-finished">
+                <form th:action="@{/todos/update/status}" method="post" th:object="${todo}">
+                    <input type="hidden" th:value="*{id}" name="id" />
+                    <input type="hidden" th:value="*{username}" name="username" />
+                    <input type="hidden" th:value="*{status}" name="status" />
+                    <input type="hidden" th:value="*{todo}" name="todo" />
+                    <input type="hidden" th:value="*{detail}" name="detail" />
+                    <input type="hidden" th:value="*{createdAt}" name="createdAt" />
+                    <input class="status-false-button" type="submit" value="未完へ">
+                </form>
+                <a class="status-false-button" th:href="@{/todos/{id}(id=${todo.id})}">詳細</a>
+            </div>
+        </div>
+    </div>
 
 </body>
 

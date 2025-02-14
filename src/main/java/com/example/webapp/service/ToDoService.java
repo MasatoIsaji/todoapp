@@ -12,7 +12,7 @@ public interface ToDoService {
 	/**
 	 * 全「すること」を検索します。
 	 */
-	List<ToDo> findAllToDo(String username);
+	List<ToDo> findAllToDo(String username, boolean status);
 
 	/**
 	 * 指定されたIDの「すること」を検索します。
@@ -28,6 +28,11 @@ public interface ToDoService {
 	 * 「すること」を更新します。
 	 */
 	void updateToDo(ToDo toDo);
+
+	/**
+	 * 「すること」の処理ステータスを更新します。
+	 */
+	void updateStatus(ToDo toDo);
 
 	/**
 	 * 指定されたIDの「すること」を削除します。

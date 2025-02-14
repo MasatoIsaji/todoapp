@@ -1,0 +1,82 @@
+/* -----
+    ボタン関係
+    ----- */
+.screen-navigator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* 登録/更新ボタン */
+.submit-button {
+    font-size: 15px;
+    display: inline-block;
+    padding: 5px 30px;
+    background-color: #2a8aca;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #2a6aca;
+}
+
+/* 戻るボタン */
+.return-button {
+    margin-left: 20px;
+
+    font-size: 15px;
+    display: inline-block;
+    padding: 4px 30px;
+    background-color: #646464;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #353434;
+}
+
+/* -----
+    入力エリア
+    ----- */
+.input-form-area {
+    margin: auto;
+    padding: 10px;
+}
+
+.input-form-area td {
+    width: 100px;
+}
+
+.input-form-area input {
+    width: 300px;
+    height: 30px;
+}
+
+.input-form-area textarea {
+    width: 300px;
+    height: 150px;
+}
+
+/* -----
+    エラーメッセージエリア
+    -----*/
+
+.notice-message,
+.todo-error-message,
+.detail-error-message {
+    /* display: flex;
+    justify-content: center; */
+    color: red;
+    margin: auto;
+    width: 350px;
+}

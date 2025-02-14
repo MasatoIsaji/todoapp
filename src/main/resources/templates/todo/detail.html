@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <meta charset="UTF-8">
     <title>ToDo詳細</title>
+    <link rel="stylesheet" th:href="@{/css/fragments/header-css.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/header-title-css.css}">
+    <link rel="stylesheet" th:href="@{/css/todo/detail.css}">
 </head>
+
 <body>
-    <h2>ToDo詳細</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <td th:text="${todo.id}"></td>
-        </tr>
+    <!-- ヘッダーのインポート -->
+    <header th:insert="~{fragments/header :: header}"></header>
+    <div class="header-title-area" th:insert="~{fragments/header-title(title='ToDo詳細')}"></div>
+
+    <!-- 画面遷移メニュー -->
+    <div class="screen-navigator">
+        <a class="edit-button" th:href="@{/todos/edit/{id}(id=${todo.id})}">編集</a>
+        <form th:action="@{/todos/delete/{id}(id=${todo.id})}" method="post">
+            <input class="delete-button" type="submit" value="削除">
+        </form>
+        <a class="return-button" th:href="@{/todos}">一覧へ</a>
+    </div>
+
+    <table class="detail-table">
         <tr>
             <th>タイトル</th>
             <td th:text="${todo.todo}"></td>
@@ -18,27 +32,29 @@
             <th>詳細</th>
             <td th:text="${todo.detail}"></td>
         </tr>
-       <tr>
+        <tr>
+            <th>ステータス</th>
+            <td th:if="${todo.status}">完了</td>
+            <td th:unless="${todo.status}">未完</td>
+        </tr>
+        <tr>
             <th>登録日時</th>
             <td th:text="${todo.createdAt.format(
                 T(java.time.format.DateTimeFormatter).
-                ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+                ofPattern('yyyy年M月d日 HH:mm:ss'))}">
             </td>
         </tr>
-       <tr>
+        <tr>
             <th>更新日時</th>
             <td th:text="${todo.updatedAt.format(
                 T(java.time.format.DateTimeFormatter).
-                ofPattern('yyyy/MM/dd HH:mm:ss'))}">
+                ofPattern('yyyy年M月d日 HH:mm:ss'))}">
             </td>
         </tr>
     </table>
-    <a th:href="@{/todos/edit/{id}(id=${todo.id})}">編集</a>
-    <!-- ▽▽▽▽▽ 13.12 ▽▽▽▽▽ -->
-    <form th:action="@{/todos/delete/{id}(id=${todo.id})}" method="post">
-        <input type="submit" value="削除">
-    </form>
-    <!-- △△△△△ 13.12 △△△△△ -->
-    <a th:href="@{/todos}">ToDo一覧へ</a>
+
+
+
 </body>
+
 </html>

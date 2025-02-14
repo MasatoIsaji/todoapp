@@ -1,0 +1,90 @@
+/* -----
+    ボタン関係
+    -----*/
+/* 共通 */
+.screen-navigator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* 編集ボタン */
+.edit-button {
+    font-size: 15px;
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #2a8aca;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #2a6aca;
+}
+
+/* 削除ボタン */
+.delete-button {
+    margin-left: 20px;
+
+    display: inline-block;
+    padding: 7px 20px;
+    background-color: #bd2a2a;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #f51515;
+}
+
+/* 戻るボタン */
+.return-button {
+    margin-left: 20px;
+
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #646464;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: #353434;
+}
+
+/*-----
+    詳細表示テーブル
+    ----- */
+.detail-table {
+    margin: auto;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+
+.detail-table th,
+.detail-table td {
+    border: 1px solid black;
+}
+
+.detail-table th {
+    height: 40px;
+    width: 100px;
+}
+
+.detail-table td {
+    padding: 10px;
+    width: 300px;
+}

@@ -14,6 +14,7 @@ public class ToDoHelper {
 		ToDo todo = new ToDo();
 		todo.setId(form.getId());
 		todo.setUsername(form.getUsername());
+		todo.setStatus(false);
 		todo.setTodo(form.getTodo());
 		todo.setDetail(form.getDetail());
 		return todo;
@@ -26,6 +27,7 @@ public class ToDoHelper {
 		ToDoForm form = new ToDoForm();
 		form.setId(todo.getId());
 		form.setUsername(todo.getUsername());
+		form.setStatus(false);
 		form.setTodo(todo.getTodo());
 		form.setDetail(todo.getDetail());
 		// 更新画面設定

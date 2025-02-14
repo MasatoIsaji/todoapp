@@ -16,7 +16,7 @@ public interface ToDoMapper {
 	/**
 	 * 全ての「すること」を取得します。
 	 */
-	List<ToDo> selectAll(@Param("username") String username);
+	List<ToDo> selectAll(@Param("username") String username, @Param("status") boolean status);
 
 	/**
 	 * 指定されたIDに対応する「すること」を取得します。
