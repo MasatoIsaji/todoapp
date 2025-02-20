@@ -15,6 +15,7 @@
 		resultType="com.example.webapp.entity.Authentication">
 		SELECT username,password,authority
 		FROM authentications
+		ORDER BY authority ASC
 	</select>
 
 	<!-- ユーザー登録 -->
