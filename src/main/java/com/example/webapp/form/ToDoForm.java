@@ -23,7 +23,7 @@ public class ToDoForm {
 	private boolean status;
 	/** すること */
 	@NotBlank(message = "ToDoは必須です。")
-	@Size(min = 1, max = 50, message = "ToDoは{min}〜{max}文字以内で入力してください。")
+	@Size(min = 1, max = 26, message = "ToDoは{min}〜{max}文字以内で入力してください。")
 	private String todo;
 	/** すること詳細 */
 	@Size(min = 1, max = 100, message = "詳細は{min}〜{max}文字以内で入力してください。")

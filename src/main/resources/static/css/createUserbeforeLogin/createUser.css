@@ -1,19 +1,39 @@
-.btn-area {
+/* -----
+    ヘッダー
+    ----- */
+@charset "UTF-8";
+
+body {
+    max-width: 1280px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+/* ヘッダー要素をflex化 */
+.header-wrap {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    max-width: 1280px;
+    height: 50px;
+    margin: 0 auto 32px;
+    background: linear-gradient(90deg, #00d4ff4d 1%, #00d4ff 20%, #090979 70%, #020024);
+    box-shadow: 10px 10px 10px -10px #00000080;
+}
+
+
+/* 画面ナビゲーター */
+.screen-navigator {
     display: flex;
     justify-content: center;
 }
-
-/* 画面ナビゲーター */
-/* .screen-navigator {
-    display: flex;
-    justify-content: center;
-} */
 
 /* -----
     登録ボタン
    -----*/
 .regist-button {
-    font-size: 17px;
+    font-size: 15px;
     display: inline-block;
     padding: 5px 30px;
     background-color: #2a8aca;
@@ -33,9 +53,9 @@
     メニュー画面ボタン
    -----*/
 .return-button {
+    font-size: 15px;
     display: inline-block;
-    padding: 4px 10px;
-    margin-left: 10px;
+    padding: 5px 30px;
     background-color: #646464;
     color: #fff;
     text-decoration: none;
@@ -43,10 +63,16 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 5px;
 }
 
 .return-button:hover {
     background-color: #353434;
+}
+
+.btn-area {
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -94,7 +120,6 @@
 }
 
 .user-regist-form {
-    /* margin: auto; */
     width: 500px;
     display: inline-grid;
 }

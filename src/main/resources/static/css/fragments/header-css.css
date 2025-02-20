@@ -21,7 +21,9 @@ body {
 
 /* ユーザー名の位置 */
 .header-wrap-right {
-    margin-right: 20px;
+    width: 50em;
+    text-align-last: end;
+    margin-right: 80px;
     color: white;
     border-bottom: 1px solid #ffffff;
 }

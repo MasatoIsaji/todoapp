@@ -16,36 +16,37 @@
 	<div class="form-input-area-base">
 		<div class="form-area">
 			<div class="form-title">
-				<p>ログイン画面</p>
+				<p>ログイン</p>
 			</div>
 
 			<!-- エラー表示 -->
 			<div class="message-area">
 				<div th:if="${param.error}">
-					<p class="error-message">usernameまたはpasswordが違います</p>
+					<p class="error-message">ユーザー名またはパスワードが違います</p>
 				</div>
 				<!--ログアウト表示 -->
 				<div th:if="${param.logout}">
 					<p class="logout-message">ログアウトしました</p>
 				</div>
+				<div class="registed-area">
+					<p class="registed-message" th:if="${message}" th:text="${message}"></p>
+				</div>
 			</div>
 
 			<form class="form-input-area" th:action="@{/authentication}" method="post" th:object="${loginForm}">
 				<div><!-- ユーザー名 -->
-					<!-- <label for="usernameInput">username</label> -->
 					<input class="input-area" type="text" th:field="*{usernameInput}" placeholder="ユーザー名">
 				</div>
 				<div><!-- パスワード -->
-					<!-- <label for="passwordInput">password</label> -->
 					<input class="input-area" type="password" th:field="*{passwordInput}" placeholder="パスワード">
 				</div>
 				<div class="loginbtn-area">
 					<input class="loginbtn-icon" type="submit" value="ログイン">
 				</div>
 			</form>
-			<!-- <div class="create-user-button">
-				<a th:href="@{/login/createUser}">新規登録</a>
-			</div> -->
+			<div class="create-user-button">
+				<a class="create-user-icon" th:href="@{/login/createUser}">新規登録</a>
+			</div>
 		</div>
 	</div>
 </body>

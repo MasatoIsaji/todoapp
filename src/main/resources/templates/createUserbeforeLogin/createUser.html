@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録</title>
+    <link rel="stylesheet" th:href="@{/css/fragments/header-title-css.css}">
+    <link rel="stylesheet" th:href="@{/css/createUserbeforeLogin/createUser.css}">
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <div th:fragment="header">
+        <div class="header-wrap">
+            <div class="header-wrap-right">
+            </div>
+        </div>
+    </div>
+    <!-- タイトルのインポート -->
+    <div class="header-title-area" th:insert="~{fragments/header-title(title='ユーザー登録')}"></div>
+
+    <!-- Flashメッセージの表示 -->
+    <div class="message-area">
+        <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    </div>
+
+    <div class="user-regist-wrap">
+        <form class="user-regist-form" th:action="@{/createUserbeforeLogin/registUser}" th:object="${authentication}"
+            method="post">
+            <table>
+                <tr>
+                    <td>
+                        <input class="input-area" type="text" th:field="*{username}" placeholder="ユーザー名">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="input-area" type="password" th:field="*{password}" placeholder="パスワード">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- <input disabled type="radio" th:field="*{authority}" value="ADMIN">管理者 -->
+                        <!-- <input type="radio" th:field="*{authority}" value="USER">一般 -->
+                        <input type="hidden" th:field="*{authority}" value="USER">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="btn-area">
+                        <input class="regist-button" type="submit" value="登録">
+                        <!-- 画面遷移メニュー -->
+                        <div class="screen-navigator">
+                            <a class="return-button" th:href="@{/}">戻る</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="validation-message">
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></div>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+                <div th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}" class="text-danger"></div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+
+</html>

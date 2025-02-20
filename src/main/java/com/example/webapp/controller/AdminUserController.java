@@ -72,7 +72,7 @@ public class AdminUserController {
 		int userLength = service.getUserList().size();
 
 		// ユーザー数が50を越える場合、ユーザー追加不可
-		if (userLength > 50) {
+		if (userLength >= 50) {
 			attributes.addFlashAttribute("errorMessage", "ユーザー数が上限に達しているため追加できません。");
 			return "redirect:/admin/userlist";
 		}

@@ -3,39 +3,28 @@ package com.example.webapp.service;
 import java.util.List;
 
 import com.example.webapp.entity.ToDo;
+import com.example.webapp.form.ToDoForm;
 
 /**
- * ToDo：サービス
+ * ToDoサービスインターフェース
  */
 public interface ToDoService {
 
-	/**
-	 * 全「すること」を検索します。
-	 */
+	// ユーザーに所属するToDoを全てリストで取得
 	List<ToDo> findAllToDo(String username, boolean status);
 
-	/**
-	 * 指定されたIDの「すること」を検索します。
-	 */
+	//  指定されたIDのToDoを取得
 	ToDo findByIdToDo(Integer id);
 
-	/**
-	 * 「すること」を新規登録します。
-	 */
-	void insertToDo(ToDo toDo);
+	//  ToDoを新規登録
+	String insertToDo(ToDoForm form);
 
-	/**
-	 * 「すること」を更新します。
-	 */
-	void updateToDo(ToDo toDo);
+	// ToDoを更新
+	String updateToDo(ToDoForm form);
 
-	/**
-	 * 「すること」の処理ステータスを更新します。
-	 */
-	void updateStatus(ToDo toDo);
+	// ToDoの処理ステータスを更新しメッセージを返す
+	String updateStatus(ToDo toDo);
 
-	/**
-	 * 指定されたIDの「すること」を削除します。
-	 */
-	void deleteToDo(Integer id);
+	// 指定されたIDのToDoを削除
+	String deleteToDo(Integer id);
 }
