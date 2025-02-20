@@ -21,6 +21,8 @@ public class UseVersionCheck {
 		// MyBatisのバージョン
 		String myBatisVersion = org.apache.ibatis.io.Resources.class.getPackage().getImplementationVersion();
 		System.out.println("MyBatis : " + myBatisVersion);
+		
+		
 
 	}
 }
