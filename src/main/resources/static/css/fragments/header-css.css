@@ -37,7 +37,7 @@ ul.drop-menu ul {
 }
 
 ul.drop-menu li {
-    width: 125px;
+    width: 50em;
     display: inline-block;
     list-style-type: none;
     position: relative;

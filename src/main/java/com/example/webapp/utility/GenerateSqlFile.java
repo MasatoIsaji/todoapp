@@ -50,7 +50,7 @@ public class GenerateSqlFile {
 		for (int i = 1; i <= todoLength; i++) {
 			String todoNumber = "ToDo" + i;
 			query += "INSERT INTO todos (todo,username,status,detail,created_at,updated_at)VALUES('" + todoNumber
-					+ "','admin',false,'テストToDo',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);\n";
+					+ "','admin,false,'テストToDo',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);\n";
 			// 作成したToDoを出力
 			System.out.println("ToDo：" + todoNumber);
 		}
