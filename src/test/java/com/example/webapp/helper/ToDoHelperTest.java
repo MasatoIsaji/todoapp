@@ -17,8 +17,8 @@ import com.example.webapp.form.ToDoForm;
 class ToDoHelperTest {
 
 	// 使用するインスタンス
-	ToDoForm form = new ToDoForm(1, "admin", true, "ToDo", "detail", true);
-	ToDo todo = new ToDo(1, "admin", true, "ToDo", "detail", LocalDateTime.now(), LocalDateTime.now());
+	ToDoForm form = new ToDoForm(1, "admin", true, "ToDo", "detail", 1, true);
+	ToDo todo = new ToDo(1, "admin", true, "ToDo", "detail", 1, LocalDateTime.now(), LocalDateTime.now());
 
 	/*
 	 * converToDoメソッドのテスト

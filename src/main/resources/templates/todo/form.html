@@ -33,7 +33,7 @@
 		<input type="hidden" th:field="*{status}">
 		<table class="input-form-area">
 			<tr>
-				<th>ToDo</th>
+				<th>タイトル</th>
 				<td>
 					<input type="text" th:field="*{todo}">
 
@@ -44,6 +44,18 @@
 				<td>
 					<textarea th:field="*{detail}">
 	                </textarea>
+
+				</td>
+			</tr>
+			<tr>
+				<th>優先順位</th>
+				<td>
+					<select class="priority-area" th:field="*{priority}">
+						<option th:value="0">(未設定)</option>
+						<option th:value="1">低</option>
+						<option th:value="2">中</option>
+						<option th:value="3">高</option>
+					</select>
 
 				</td>
 			</tr>

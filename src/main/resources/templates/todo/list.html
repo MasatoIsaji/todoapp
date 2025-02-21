@@ -28,15 +28,24 @@
 
     <!-- ToDo：未完の一覧表示 -->
     <div class="todo-list">
-        <div class="todo-card" th:each="todo : ${todosUnfinished}">
-            <div class="todo-content" th:text="${todo.todo}"></div>
+        <div class="todo-card" th:each="todo : ${todosUnfinished}" th:attr="data-priority=${todo.priority}">
+            <div class=" todo-content" th:text="${todo.todo}" th:class="${'priority-' + todo.priority}"></div>
             <div class="todo-actions">
+                <div class="priority-container">
+                    <p th:switch="${todo.priority}">
+                        <span th:case="0"></span>
+                        <span th:case="1">低</span>
+                        <span th:case="2">中</span>
+                        <span th:case="3">高</span>
+                    </p>
+                </div>
                 <form th:action="@{/todos/update/status}" method="post" th:object="${todo}">
                     <input type="hidden" th:value="*{id}" name="id" />
                     <input type="hidden" th:value="*{username}" name="username" />
                     <input type="hidden" th:value="*{status}" name="status" />
                     <input type="hidden" th:value="*{todo}" name="todo" />
                     <input type="hidden" th:value="*{detail}" name="detail" />
+                    <input type="hidden" th:value="*{priority}" name="priority">
                     <input type="hidden" th:value="*{createdAt}" name="createdAt" />
                     <input class="status-true-button" type="submit" value="完">
                 </form>
@@ -48,16 +57,25 @@
     <br>
     <hr>
     <br>
-    <!-- ToDo：未完の一覧表示 -->
+    <!-- ToDo：完了の一覧表示 -->
     <div class="todo-list-finished">
         <div class="todo-card-finished" th:each="todo : ${todosFinished}">
             <div class="todo-content-finished" th:text="${todo.todo}"></div>
             <div class="todo-actions-finished">
+                <div class="priority-container-finished">
+                    <p th:switch="${todo.priority}">
+                        <span th:case="0"></span>
+                        <span th:case="1">低</span>
+                        <span th:case="2">中</span>
+                        <span th:case="3">高</span>
+                    </p>
+                </div>
                 <form th:action="@{/todos/update/status}" method="post" th:object="${todo}">
                     <input type="hidden" th:value="*{id}" name="id" />
                     <input type="hidden" th:value="*{username}" name="username" />
                     <input type="hidden" th:value="*{status}" name="status" />
                     <input type="hidden" th:value="*{todo}" name="todo" />
+                    <input type="hidden" th:value="*{priority}" name="priority">
                     <input type="hidden" th:value="*{detail}" name="detail" />
                     <input type="hidden" th:value="*{createdAt}" name="createdAt" />
                     <input class="status-false-button" type="submit" value="未">
@@ -66,6 +84,32 @@
             </div>
         </div>
     </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const todoCards = document.querySelectorAll('.todo-card');
+
+        // カードの背景色クラスを優先順位により付与
+        todoCards.forEach(todoCard => {
+            const priority = todoCard.dataset.priority;
+
+            switch (priority) {
+                case '0':
+                    todoCard.classList.add('priority-0');
+                    break;
+                case '1':
+                    todoCard.classList.add('priority-1');
+                    break;
+                case '2':
+                    todoCard.classList.add('priority-2');
+                    break;
+                case '3':
+                    todoCard.classList.add('priority-3');
+                    break;
+            }
+        });
+        /*]]>*/
+    </script>
 
 </body>
 

@@ -6,7 +6,7 @@ spring:
     password: p@ss
   sql:
     init:
-      mode: never
+      mode: always
 
 logging:
   level:

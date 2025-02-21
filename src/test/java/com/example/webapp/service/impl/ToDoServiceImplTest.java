@@ -71,7 +71,7 @@ class ToDoServiceImplTest {
 			 * mockセット
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail",1, time, time);
 			when(mapper.selectById(1)).thenReturn(todo);
 			/**
 			 * 試験
@@ -128,7 +128,7 @@ class ToDoServiceImplTest {
 		@Test
 		@DisplayName("insertToDo_正常系")
 		void doReturn() {
-			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", 1,true);
 			String result = service.insertToDo(form);
 			assertDoesNotThrow(() -> result);
 			assertEquals(form.getTodo() + "が作成されました", result);
@@ -153,10 +153,10 @@ class ToDoServiceImplTest {
 			 * mock化
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail",1, time, time);
 			when(mapper.selectById(1)).thenReturn(todo);
 
-			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", 1,true);
 			String result = service.updateToDo(form);
 			assertDoesNotThrow(() -> result);
 			assertEquals(form.getTodo() + "が更新されました", result);
@@ -177,7 +177,7 @@ class ToDoServiceImplTest {
 			ToDo todo = null;
 			when(mapper.selectById(1)).thenReturn(todo);
 
-			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail",1, true);
 			//			String result = service.updateToDo(form);
 			assertThrows(WebappException.class, () -> service.updateToDo(form));
 			try {
@@ -206,7 +206,7 @@ class ToDoServiceImplTest {
 			 * mock化
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail", 1,time, time);
 			when(mapper.selectById(1)).thenReturn(todo);
 
 			/**
@@ -230,7 +230,7 @@ class ToDoServiceImplTest {
 			 * mock化
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", true, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", true, "todo", "detail",1, time, time);
 			when(mapper.selectById(1)).thenReturn(todo);
 
 			/**
@@ -261,7 +261,7 @@ class ToDoServiceImplTest {
 			 * 試験
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo2 = new ToDo(1, "username", true, "todo", "detail", time, time);
+			ToDo todo2 = new ToDo(1, "username", true, "todo", "detail",1, time, time);
 			assertThrows(WebappException.class, () -> service.updateStatus(todo2));
 			try {
 				service.updateStatus(todo2);
@@ -289,7 +289,7 @@ class ToDoServiceImplTest {
 			 * mock化
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", true, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", true, "todo", "detail",1, time, time);
 			when(mapper.selectById(1)).thenReturn(todo);
 
 			/**

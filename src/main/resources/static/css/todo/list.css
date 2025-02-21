@@ -84,6 +84,50 @@
 }
 
 /* -----
+    優先順位によるデザイン変更
+    -----*/
+/* .priority-0 {
+    background-color: white;
+}
+
+.priority-1 {
+    background-color: rgb(186, 255, 209);
+}
+
+.priority-2 {
+    background-color: rgb(253, 253, 200);
+
+}
+
+.priority-3 {
+    background-color: rgb(255, 82, 82);
+    color: white;
+    font-weight: bold;
+} */
+
+.priority-0 {
+    background-color: white;
+}
+
+.priority-1 {
+    background-color: #beffbe;
+}
+
+.priority-2 {
+    background-color: #FFFFE0;
+}
+
+.priority-3 {
+    background-color: #FFB4B4;
+
+}
+
+.priority-3 span {
+    font-weight: bold;
+    color: red;
+}
+
+/* -----
     ToDoカード表示デザイン(未完)
     -----*/
 .todo-list {
@@ -91,7 +135,6 @@
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
 }
-
 
 .todo-card {
     border: 1px solid #ccc;
@@ -105,9 +148,15 @@
     transform: translateY(-5px);
 }
 
-/* .todo-content {
-    margin-bottom: 10px;
-} */
+.priority-container {
+    padding: 9px 10px;
+    width: 6em;
+    text-align: left;
+}
+
+.priority-container p {
+    margin: 0px;
+}
 
 .todo-actions {
     text-align: right;
@@ -159,9 +208,15 @@
     transform: translateY(-5px);
 }
 
-/* .todo-content-finished {
-    margin-bottom: 10px;
-} */
+.priority-container-finished {
+    padding: 9px 10px;
+    width: 6em;
+    text-align: left;
+}
+
+.priority-container-finished p {
+    margin: 0px;
+}
 
 .todo-actions-finished {
     text-align: right;

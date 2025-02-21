@@ -67,6 +67,12 @@
     height: 150px;
 }
 
+.priority-area {
+    width: 80px;
+    height: 25px;
+    text-align: center;
+}
+
 /* -----
     エラーメッセージエリア
     -----*/

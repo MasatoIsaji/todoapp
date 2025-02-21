@@ -38,17 +38,24 @@
             <td th:unless="${todo.status}">未完</td>
         </tr>
         <tr>
+            <th>優先順位</th>
+            <td th:if="${todo.priority} == 0"></td>
+            <td th:if="${todo.priority} == 1">低</td>
+            <td th:if="${todo.priority} == 2">中</td>
+            <td th:if="${todo.priority} == 3">高</td>
+        </tr>
+        <tr>
             <th>登録日時</th>
             <td th:text="${todo.createdAt.format(
                 T(java.time.format.DateTimeFormatter).
-                ofPattern('yyyy年M月d日 HH:mm:ss'))}">
+                ofPattern('yyyy年M月d日 H時m分s秒'))}">
             </td>
         </tr>
         <tr>
             <th>更新日時</th>
             <td th:text="${todo.updatedAt.format(
                 T(java.time.format.DateTimeFormatter).
-                ofPattern('yyyy年M月d日 HH:mm:ss'))}">
+                ofPattern('yyyy年M月d日 H時m分s秒'))}">
             </td>
         </tr>
     </table>

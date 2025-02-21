@@ -25,6 +25,8 @@ public class ToDo {
 	private String todo;
 	/** すること詳細 */
 	private String detail;
+	/** 優先順位 */
+	private Integer priority;
 	/** 作成日時 */
 	private LocalDateTime createdAt;
 	/** 更新日時 */

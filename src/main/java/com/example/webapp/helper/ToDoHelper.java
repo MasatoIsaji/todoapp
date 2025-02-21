@@ -17,6 +17,7 @@ public class ToDoHelper {
 		todo.setStatus(false);
 		todo.setTodo(form.getTodo());
 		todo.setDetail(form.getDetail());
+		todo.setPriority(form.getPriority());
 		return todo;
 	}
 
@@ -30,6 +31,7 @@ public class ToDoHelper {
 		form.setStatus(false);
 		form.setTodo(todo.getTodo());
 		form.setDetail(todo.getDetail());
+		form.setPriority(todo.getPriority());
 		// 更新画面設定
 		form.setIsNew(false);
 		return form;

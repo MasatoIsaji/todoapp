@@ -77,7 +77,7 @@ class ToDoControllerTest {
 			 * mockセット
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail",1, time, time);
 			when(service.findByIdToDo(1)).thenReturn(todo);
 
 			/**
@@ -154,7 +154,7 @@ class ToDoControllerTest {
 			/**
 			 * mockセット
 			 */
-			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", 1,true);
 			when(service.insertToDo(form)).thenReturn("usernameが作成されました");
 
 			/**
@@ -215,7 +215,7 @@ class ToDoControllerTest {
 			 * mockセット
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail",1, time, time);
 			when(service.findByIdToDo(1)).thenReturn(todo);
 
 			/**
@@ -269,7 +269,7 @@ class ToDoControllerTest {
 			/**
 			 * mockセット
 			 */
-			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail",1, true);
 			when(service.updateToDo(form)).thenReturn("todoが更新されました");
 
 			/**
@@ -300,7 +300,7 @@ class ToDoControllerTest {
 			/**
 			 * mockセット
 			 */
-			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", 1,true);
 			doThrow(new WebappException("対象データがありません")).when(service).updateToDo(form);
 
 			/**
@@ -360,7 +360,7 @@ class ToDoControllerTest {
 			 * mockセット
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail",1, time, time);
 			when(service.updateStatus(todo)).thenReturn("メッセージ");
 
 			/**
@@ -393,7 +393,7 @@ class ToDoControllerTest {
 			 * mockセット
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail", 1,time, time);
 			doThrow(new WebappException("NG")).when(service).updateStatus(todo);
 
 			/**
@@ -455,7 +455,7 @@ class ToDoControllerTest {
 			 * mockセット
 			 */
 			LocalDateTime time = LocalDateTime.now();
-			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail",1, time, time);
 			when(service.deleteToDo(1)).thenReturn("メッセージ");
 
 			/**

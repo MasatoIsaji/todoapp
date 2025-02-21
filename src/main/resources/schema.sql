@@ -8,13 +8,15 @@ CREATE TABLE todos
    -- id（することID）：主キー
    id serial PRIMARY KEY,
    -- todoの持ち主
-   username varchar (50),
+   username VARCHAR (50),
    -- 処理ステータス
    status boolean NOT NULL,
    -- todo（すること）：NULL不許可
-   todo varchar (255) NOT NULL,
+   todo VARCHAR (255) NOT NULL,
    -- detail（説明）
    detail text,
+   -- 優先順位
+   priority Integer,
    -- created_at（作成日）
    created_at timestamp without time zone,
    -- updated_at（更新日）
@@ -28,5 +30,5 @@ CREATE TABLE authentications
    -- パスワード
    password VARCHAR (255) NOT NULL,
    -- 権限
-   authority varchar (10) NOT NULL
+   authority VARCHAR (10) NOT NULL
 );
