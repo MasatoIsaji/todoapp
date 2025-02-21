@@ -34,7 +34,7 @@ public class ToDoServiceImpl implements ToDoService {
 		ToDo todo = toDoMapper.selectById(id);
 		// 対象データが存在しない時
 		if (todo == null) {
-			throw new WebappException("対象データがありません。");
+			throw new WebappException("対象データがありません");
 		}
 		return todo;
 	}
@@ -55,9 +55,10 @@ public class ToDoServiceImpl implements ToDoService {
 		ToDo toDo = ToDoHelper.convertToDo(form);
 
 		// update対象が存在するか
-		ToDo target = findByIdToDo(form.getId());
-		if (target == null) {
-			throw new WebappException("更新対象がありません。");
+		try {
+			findByIdToDo(form.getId());
+		} catch (WebappException e) {
+			throw e;
 		}
 
 		toDoMapper.update(toDo);
@@ -67,9 +68,10 @@ public class ToDoServiceImpl implements ToDoService {
 	@Override
 	public String updateStatus(ToDo toDo) {
 		// 対象ToDoが存在するか
-		ToDo target = findByIdToDo(toDo.getId());
-		if (target == null) {
-			throw new WebappException("更新対象がありません。");
+		try {
+			findByIdToDo(toDo.getId());
+		} catch (WebappException e) {
+			throw e;
 		}
 
 		// statusを反転させupdate
@@ -85,10 +87,12 @@ public class ToDoServiceImpl implements ToDoService {
 
 	@Override
 	public String deleteToDo(Integer id) {
-		// 対象ToDoが存在するか
-		ToDo target = findByIdToDo(id);
-		if (target == null) {
-			throw new WebappException("削除対象がありません。");
+		ToDo target;
+		try {
+			// 対象ToDoが存在するか
+			target = findByIdToDo(id);
+		} catch (WebappException e) {
+			throw e;
 		}
 		toDoMapper.delete(id);
 

@@ -50,7 +50,6 @@ public class LoginUserDatailsServiceImpl implements UserDetailsService {
 	private List<GrantedAuthority> getAuthorityList(String role) {
 		// 権限リスト
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		// 列挙型からロールを取得
 		authorities.add(new SimpleGrantedAuthority(role));
 		// ADMIN ロールの場合、USERの権限も付与
 		if (role.equals("ADMIN")) {

@@ -1,7 +1,5 @@
 package com.example.webapp.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.webapp.entity.Authentication;
+import com.example.webapp.exception.WebappException;
 import com.example.webapp.service.impl.AdminServiceImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -25,16 +24,16 @@ public class AdminUserController {
 
 	@GetMapping("/userlist")
 	public String showUserList(Model model, RedirectAttributes attributes) {
-		// ユーザーリストを取得
-		List<Authentication> userList = service.getUserList();
-		if (userList == null) {
+		try {
+			// ユーザーリストを取得し、modelに詰めて返却
+			model.addAttribute("userlist", service.getUserList());
+			return "admin/userlist";
+
+		} catch (WebappException e) {
 			// ユーザーがいない場合リダイレクト(ありえない)
-			attributes.addFlashAttribute("errorMessage", "ユーザーが存在しません");
-			// リダイレクト
+			attributes.addFlashAttribute("errorMessage", e.getMessage());
 			return "redirect:/";
 		}
-		model.addAttribute("userlist", userList);
-		return "admin/userlist";
 	}
 
 	/**
@@ -51,19 +50,19 @@ public class AdminUserController {
 			attributes.addFlashAttribute("errorMessage", "ユーザー名が取得できません。");
 			return "redirect:/admin/userlist";
 		}
+		try {
+			// 削除しても問題ないかチェック(削除対象外の場合例外発生)
+			service.isNotDeleteUser(username);
 
-		// adminユーザーではないか確認
-		if (service.isNotDeleteUser(username)) {
-			// 削除してはいけないユーザーの場合リダイレクト
-			attributes.addFlashAttribute("errorMessage", "ユーザー名「admin」または操作中のユーザーのため削除できません。");
+			// 削除実行
+			String resultMessage = service.deleteUser(username);
+			attributes.addFlashAttribute("message", resultMessage);
+			return "redirect:/admin/userlist";
+		} catch (WebappException e) {
+			// 削除対象が存在しない場合リダイレクト
+			attributes.addFlashAttribute("errorMessage", e.getMessage());
 			return "redirect:/admin/userlist";
 		}
-
-		// 削除実行
-		service.deleteUser(username);
-		attributes.addFlashAttribute("message", "ユーザー：" + username + " 削除しました");
-
-		return "redirect:/admin/userlist";
 	}
 
 	@GetMapping("/userRegistForm")
@@ -73,7 +72,7 @@ public class AdminUserController {
 
 		// ユーザー数が50を越える場合、ユーザー追加不可
 		if (userLength >= 50) {
-			attributes.addFlashAttribute("errorMessage", "ユーザー数が上限に達しているため追加できません。");
+			attributes.addFlashAttribute("errorMessage", "ユーザー数が上限に達しているため追加できません");
 			return "redirect:/admin/userlist";
 		}
 		Authentication auth = new Authentication();
@@ -90,18 +89,16 @@ public class AdminUserController {
 			// バリデーションエラーの場合
 			return "admin/registUserForm";
 		}
-
-		// ユーザー重複チェック
-		if (service.isRegistUser(authentication.getUsername())) {
-			attributes.addFlashAttribute("errorMessage", "既に使われているユーザー名です。");
+		try {
+			// ユーザー重複チェック
+			service.isRegistUser(authentication.getUsername());
+		} catch (WebappException e) {
+			attributes.addFlashAttribute("errorMessage", e.getMessage());
 			return "redirect:/admin/userlist";
 		}
-
 		// ユーザー登録
-		service.registUser(authentication);
-		attributes.addFlashAttribute("message", "ユーザー：" + authentication.getUsername() + " を登録しました。");
-
+		String resultMessage = service.registUser(authentication);
+		attributes.addFlashAttribute("message", resultMessage);
 		return "redirect:/admin/userlist";
 	}
-
 }

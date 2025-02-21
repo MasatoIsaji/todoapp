@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.webapp.entity.Authentication;
+import com.example.webapp.exception.WebappException;
 import com.example.webapp.service.impl.AdminServiceImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -27,10 +28,11 @@ public class CreateUserBeforeLoginController {
 			// バリデーションエラーの場合
 			return "createUserbeforeLogin/createUser";
 		}
-
-		// ユーザー重複チェック
-		if (service.isRegistUser(authentication.getUsername())) {
-			attributes.addFlashAttribute("errorMessage", "既に使われているユーザー名です。");
+		try {
+			// ユーザー重複チェック
+			service.isRegistUser(authentication.getUsername());
+		} catch (WebappException e) {
+			attributes.addFlashAttribute("errorMessage", e.getMessage());
 			return "redirect:/login/createUser";
 		}
 
