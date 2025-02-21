@@ -17,7 +17,7 @@
     <!-- 画面遷移メニュー -->
     <div class="screen-navigator">
         <a class="edit-button" th:href="@{/todos/edit/{id}(id=${todo.id})}">編集</a>
-        <form th:action="@{/todos/delete/{id}(id=${todo.id})}" method="post">
+        <form th:action="@{/todos/delete/{id}(id=${todo.id})}" method="get">
             <input class="delete-button" type="submit" value="削除">
         </form>
         <a class="return-button" th:href="@{/todos}">一覧へ</a>

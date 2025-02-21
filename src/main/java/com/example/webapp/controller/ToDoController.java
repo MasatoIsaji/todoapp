@@ -202,7 +202,7 @@ public class ToDoController {
 	 * @param attributes フラッシュメッセージ
 	 * @return ToDo一覧画面
 	 */
-	@PostMapping("/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Integer id, RedirectAttributes attributes) {
 		try {
 			// 削除処理

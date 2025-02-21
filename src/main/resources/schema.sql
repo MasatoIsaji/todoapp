@@ -30,4 +30,3 @@ CREATE TABLE authentications
    -- 権限
    authority varchar (10) NOT NULL
 );
--- △△△△△ リストA.31 △△△△△

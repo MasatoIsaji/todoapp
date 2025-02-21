@@ -253,4 +253,244 @@ class ToDoControllerTest {
 		}
 	}
 
+	@Nested
+	class updateTest {
+		/**
+		 * 試験対象：updateメソッド
+		 * 試験内容：
+		 * ・一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("update_正常系")
+		public void update_normal() throws Exception {
+			/**
+			 * mockセット
+			 */
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			when(service.updateToDo(form)).thenReturn("todoが更新されました");
+
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(post("/todos/update").with(csrf())
+					.param("id", "1")
+					.param("username", "username")
+					.param("status", "true")
+					.param("todo", "todo")
+					.param("detail", "detail")
+					.param("isNew", "true"))
+					.andExpect(status().is3xxRedirection())
+					.andExpect(redirectedUrl("/todos"));
+		}
+
+		/**
+		 * 試験対象：updateメソッド
+		 * 試験内容：
+		 * ・一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("update_異常系01")
+		public void update_abnormal01() throws Exception {
+			/**
+			 * mockセット
+			 */
+			ToDoForm form = new ToDoForm(1, "username", false, "todo", "detail", true);
+			doThrow(new WebappException("対象データがありません")).when(service).updateToDo(form);
+
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(post("/todos/update").with(csrf())
+					.param("id", "1")
+					.param("username", "username")
+					.param("status", "true")
+					.param("todo", "todo")
+					.param("detail", "detail")
+					.param("isNew", "true"))
+					.andExpect(status().is3xxRedirection());
+
+		}
+
+		/**
+		 * 試験対象：updateメソッド
+		 * 試験内容：
+		 * ・フォームへの正しいパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("update_異常系02")
+		public void update_abnormal02() throws Exception {
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(post("/todos/update").with(csrf())
+					.param("id", "")
+					.param("username", "")
+					.param("status", "")
+					.param("todo", "")
+					.param("detail", "")
+					.param("isNew", ""))
+					.andExpect(status().isOk())
+					.andExpect(view().name("todo/form"));
+		}
+	}
+
+	@Nested
+	class updateStatusTest {
+		/**
+		 * 試験対象：updateStatusメソッド
+		 * 試験内容：
+		 * ・一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("updateStatus_正常系")
+		public void updateStatus_normal() throws Exception {
+			/**
+			 * mockセット
+			 */
+			LocalDateTime time = LocalDateTime.now();
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			when(service.updateStatus(todo)).thenReturn("メッセージ");
+
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(post("/todos/update/status").with(csrf())
+					.param("id", "1")
+					.param("username", "username")
+					.param("status", "true")
+					.param("todo", "todo")
+					.param("detail", "detail")
+					.param("createdAt", "2025/02/20 16:07:29.325")
+					.param("updatedAt", "2025/02/20 16:07:29.325"))
+					.andExpect(status().is3xxRedirection())
+					.andExpect(redirectedUrl("/todos"));
+		}
+
+		/**
+		 * 試験対象：updateStatusメソッド
+		 * 試験内容：
+		 * ・サービスで例外が発生し、一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("updateStatus_異常系01")
+		public void updateStatus_abnormal01() throws Exception {
+			/**
+			 * mockセット
+			 */
+			LocalDateTime time = LocalDateTime.now();
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			doThrow(new WebappException("NG")).when(service).updateStatus(todo);
+
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(post("/todos/update/status").with(csrf())
+					.param("id", "1")
+					.param("username", "username")
+					.param("status", "true")
+					.param("todo", "todo")
+					.param("detail", "detail")
+					.param("createdAt", "2025/02/20 16:07:29.325")
+					.param("updatedAt", "2025/02/20 16:07:29.325"))
+					.andExpect(status().is3xxRedirection())
+					.andExpect(redirectedUrl("/todos"));
+		}
+
+		/**
+		 * 試験対象：updateStatusメソッド
+		 * 試験内容：
+		 * ・バリデーションエラーが発生し、一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("updateStatus_異常系02")
+		public void updateStatus_abnormal02() throws Exception {
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(post("/todos/update/status").with(csrf())
+					.param("id", "")
+					.param("username", "")
+					.param("status", "")
+					.param("todo", "")
+					.param("detail", "")
+					.param("createdAt", "")
+					.param("updatedAt", ""))
+					.andExpect(status().is3xxRedirection())
+					.andExpect(redirectedUrl("/todos"));
+		}
+	}
+
+	@Nested
+	class deleteTest {
+		/**
+		 * 試験対象：deleteメソッド
+		 * 試験内容：
+		 * ・一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("delete_正常系")
+		public void delete_normal() throws Exception {
+			/**
+			 * mockセット
+			 */
+			LocalDateTime time = LocalDateTime.now();
+			ToDo todo = new ToDo(1, "username", false, "todo", "detail", time, time);
+			when(service.deleteToDo(1)).thenReturn("メッセージ");
+
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(get("/todos/delete/1").with(csrf()))
+					.andExpect(status().is3xxRedirection())
+					.andExpect(redirectedUrl("/todos"))
+					.andExpect(flash().attribute("message", "メッセージ"));
+		}
+
+		/**
+		 * 試験対象：deleteメソッド
+		 * 試験内容：
+		 * ・サービスで例外が発生し、一覧への正しいリダイレクトパスを返すこと
+		 * ・例外が発生しないこと
+		 * @throws Exception MockMvcから発生する例外(業務例外ではない)
+		 */
+		@Test
+		@WithMockUser(username = "username", roles = "ADMIN")
+		@DisplayName("delete_異常系")
+		public void delete_abnormal01() throws Exception {
+			/**
+			 * mockセット
+			 */
+			doThrow(new WebappException("メッセージ")).when(service).deleteToDo(1);
+
+			/**
+			 * 試験
+			 */
+			mockMvc.perform(get("/todos/delete/1").with(csrf()))
+					.andExpect(status().is3xxRedirection())
+					.andExpect(redirectedUrl("/todos"))
+					.andExpect(flash().attribute("errorMessage", "メッセージ"));
+		}
+	}
+
 }

@@ -14,27 +14,27 @@ import com.example.webapp.entity.ToDo;
 public interface ToDoMapper {
 
 	/**
-	 * 全ての「すること」を取得します。
+	 * 全てのToDoを取得します。
 	 */
 	List<ToDo> selectAll(@Param("username") String username, @Param("status") boolean status);
 
 	/**
-	 * 指定されたIDに対応する「すること」を取得します。
+	 * 指定されたIDのToDoを取得します。
 	 */
 	ToDo selectById(@Param("id") Integer id);
 
 	/**
-	 * 「すること」を登録します。
+	 * ToDoを登録します。
 	 */
 	void insert(ToDo toDo);
 
 	/**
-	 * 「すること」を更新します。
+	 * ToDoを更新します。
 	 */
 	void update(ToDo toDo);
 
 	/**
-	 * 指定されたIDの「すること」を削除します。
+	 * 指定されたIDのToDoを削除します。
 	 */
 	void delete(@Param("id") Integer id);
 }
