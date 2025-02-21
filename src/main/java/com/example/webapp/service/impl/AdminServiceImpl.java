@@ -72,7 +72,7 @@ public class AdminServiceImpl implements AdminService {
 		// 登録ユーザーと同一のユーザーがいないか確認
 		Authentication auth = authenticationMapper.selectByUsername(username);
 		// 重複無し
-		if (auth == null) {
+		if (auth != null) {
 			throw new WebappException("既に使われているユーザー名です");
 		}
 	}
