@@ -254,12 +254,12 @@ class AdminServiceImplTest {
 		 * ・例外が発生しないこと
 		 */
 		@Test
-		@DisplayName("isNotDeleteUser正常系")
-		void checkThrough_normal() {
+		@DisplayName("isRegistUser正常系")
+		void checkThrough_abNormal() {
 			/**
 			 * mockセット
 			 */
-			Authentication auth = new Authentication("username", "password", "ADMIN");
+			Authentication auth = null;
 			when(authenticationMapper.selectByUsername(anyString())).thenReturn(auth);
 			/**
 			 * 試験
@@ -275,11 +275,11 @@ class AdminServiceImplTest {
 		 */
 		@Test
 		@DisplayName("isNotDeleteUser異常系")
-		void checkThrough_abNormal() {
+		void checkThrough_normal() {
 			/**
 			 * mockセット
 			 */
-			Authentication auth = null;
+			Authentication auth = new Authentication("username", "password", "ADMIN");
 			when(authenticationMapper.selectByUsername(anyString())).thenReturn(auth);
 			/**
 			 * 試験
@@ -292,5 +292,4 @@ class AdminServiceImplTest {
 			}
 		}
 	}
-
 }

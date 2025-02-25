@@ -70,10 +70,10 @@ VALUES
 ),
 
 (
-   '終わったやつ',
+   'アイスを買う',
    'admin',
    true,
-   '本当に終わった・・・？',
+   'おいしそうなアイスを２つ購入する',
    2,
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
@@ -85,6 +85,56 @@ VALUES
    false,
    '運動する',
    1,
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   '車検に出す',
+   'false',
+   false,
+   '○○ディーラーに事前にアポを取ること',
+   2,
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   'お風呂を掃除する',
+   'user',
+   false,
+   'ちゃんとカビキラーを使うこと',
+   3,
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   'クリーニングに出す',
+   'user',
+   false,
+   '出す物：スーツ/カッターシャツ/カーディガン',
+   3,
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   '自動車税を払う',
+   'user',
+   false,
+   'コンビニ支払い',
+   2,
+   CURRENT_TIMESTAMP,
+   CURRENT_TIMESTAMP
+),
+
+(
+   'サーバーを起動',
+   'user',
+   false,
+   'サーバーを起動させる',
+   0,
    CURRENT_TIMESTAMP,
    CURRENT_TIMESTAMP
 ),
