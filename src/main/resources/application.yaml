@@ -8,6 +8,6 @@ spring:
     init:
       mode: always
 
-logging:
-  level:
-    com.example.webapp.repository: DEBUG
+#logging:
+#  level:
+#    com.example.webapp.repository: DEBUG

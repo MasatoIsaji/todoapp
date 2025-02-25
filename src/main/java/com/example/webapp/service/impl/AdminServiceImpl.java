@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.webapp.entity.Authentication;
 import com.example.webapp.exception.WebappException;
@@ -14,6 +15,7 @@ import com.example.webapp.utility.PasswordGenerator;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<timestamp key="LOG_DATE" datePattern="yyyyMMdd" />
+	<property name="LOG_FILE" value="logs/todo.log" />
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${LOG_FILE}</file>
+
+		<!-- ▽ローテーションパターンの設定 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.%d{yyyy-MM}</fileNamePattern><!--毎月ローテーション -->
+			<maxHistory>12</maxHistory><!-- 1年分を保存 -->
+		</rollingPolicy>
+
+	</appender>
+
+	<!--▽各ログレベルを調整 基本的にINFOだが、DBアクセス時のみDEBUGで出力 -->
+	<logger name="com.example.webapp.repository" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

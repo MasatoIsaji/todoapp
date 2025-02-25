@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.webapp.entity.Authentication;
 import com.example.webapp.entity.LoginUser;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 * カスタム認証サービス
 */
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class LoginUserDatailsServiceImpl implements UserDetailsService {
 
