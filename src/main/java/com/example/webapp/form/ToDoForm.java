@@ -9,9 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * すること：Form
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

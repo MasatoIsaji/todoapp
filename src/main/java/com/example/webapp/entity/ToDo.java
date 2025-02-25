@@ -7,23 +7,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * すること：エンティティ
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ToDo {
-	/** することID */
+	/** ToDoID */
 	private Integer id;
-	/** することの持ち主 */
+	/** ToDoの持ち主 */
 	private String username;
 	/** 処理ステータス */
 	private boolean status;
-	/** すること */
+	/** ToDo */
 	private String todo;
-	/** すること詳細 */
+	/** 詳細 */
 	private String detail;
 	/** 優先順位 */
 	private Integer priority;

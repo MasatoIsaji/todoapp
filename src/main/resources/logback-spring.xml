@@ -5,7 +5,7 @@
 	<include
 		resource="org/springframework/boot/logging/logback/console-appender.xml" />
 	<timestamp key="LOG_DATE" datePattern="yyyyMMdd" />
-	<property name="LOG_FILE" value="logs/todo.log" />
+	<property name="LOG_FILE" value="/opt/apache-tomcat-10.1.36/logs/todoAppLogs/todo.log" />
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">

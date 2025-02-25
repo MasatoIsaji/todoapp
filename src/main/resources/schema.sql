@@ -1,27 +1,7 @@
 -- テーブルが存在したら削除する
 DROP TABLE IF EXISTS todos;
 DROP TABLE IF EXISTS authentications;
-DROP TYPE IF EXISTS role;
 -- テーブルの作成
-CREATE TABLE todos
-(
-   -- id（することID）：主キー
-   id serial PRIMARY KEY,
-   -- todoの持ち主
-   username VARCHAR (50),
-   -- 処理ステータス
-   status boolean NOT NULL,
-   -- todo（すること）：NULL不許可
-   todo VARCHAR (255) NOT NULL,
-   -- detail（説明）
-   detail text,
-   -- 優先順位
-   priority Integer,
-   -- created_at（作成日）
-   created_at timestamp without time zone,
-   -- updated_at（更新日）
-   updated_at timestamp without time zone
-);
 -- 認証情報を格納するテーブル
 CREATE TABLE authentications
 (
@@ -31,4 +11,25 @@ CREATE TABLE authentications
    password VARCHAR (255) NOT NULL,
    -- 権限
    authority VARCHAR (10) NOT NULL
+);
+-- ToDoテーブル
+CREATE TABLE todos
+(
+   -- ToDoID：主キー
+   id serial PRIMARY KEY,
+   -- ToDoの持ち主
+   username VARCHAR (50),
+   -- 処理ステータス
+   status boolean NOT NULL,
+   -- ToDo：NULL不許可
+   todo VARCHAR (255) NOT NULL,
+   -- detail（説明）
+   detail text,
+   -- 優先順位
+   priority Integer,
+   -- created_at（作成日）
+   created_at timestamp without time zone,
+   -- updated_at（更新日）
+   updated_at timestamp without time zone,
+   foreign key (username) references authentications (username)
 );

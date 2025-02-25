@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * テスト時に使用する大量データを生成するクラス
+ */
 public class GenerateSqlFile {
 
 	public static void main(String[] args) throws IOException {

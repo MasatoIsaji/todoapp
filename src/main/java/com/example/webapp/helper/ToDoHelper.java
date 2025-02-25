@@ -4,7 +4,7 @@ import com.example.webapp.entity.ToDo;
 import com.example.webapp.form.ToDoForm;
 
 /**
- * ToDo：ヘルパー
+ * ToDoとToDoFormの変換クラス
  */
 public class ToDoHelper {
 	/**
