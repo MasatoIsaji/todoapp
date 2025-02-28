@@ -6,8 +6,8 @@ spring:
     password: p@ss
   sql:
     init:
-      mode: never
-      #mode: always アプリケーション起動時にSQLを流す
+      #mode: never
+      mode: always #アプリケーション起動時にSQLを流す
 
 #logging:
 #  level:
