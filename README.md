@@ -68,6 +68,16 @@
 - **Junit5(junit-jupiter-api 5.10.0)**
 - **Junit5(junit-jupiter-engine 5.10.0)**
 
+## デプロイ環境
+- **さくらのVPS**
+- **centOS stream9**
+- **Apache HTTP Server 2.4.62**
+- **Apache tomcat 10.1.36**
+- **~~Docker 28.0.0~~**(メモリの関係で頻繁にdockerが落ちるため使用中止)
+  
+  [技術詳細はこちらでも確認いただけます](http://160.16.130.243/todoApp/explanation-todo.html)
+
+
 ## 技術選定理由
 静的型付けによる堅牢なAPIを構築するためJavaを選択しました。そしてSpringFrameworkを採用することでDIなどの共通処理をフレームワークに委ね、ビジネスロジックの実装に集中し、開発効率を高めています。
 
